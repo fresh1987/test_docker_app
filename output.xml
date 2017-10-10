@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20171010 14:33:49.148" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<suite source="F:\Работа\Andersen\3\test_docker_app\my_test.robot" id="s1" name="My Test">
+<test id="s1-t1" name="Step1: Check DB connection">
+<kw name="Check DB connection">
+<kw name="Check Exist Database" library="test_func">
+<doc>Check: connect to DB</doc>
+<arguments>
+<arg>${DB_NAME}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:49.255" level="INFO">Successful cnnection to web/clients.db</msg>
+<status status="PASS" endtime="20171010 14:33:49.255" starttime="20171010 14:33:49.254"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:49.255" starttime="20171010 14:33:49.254"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:49.255" critical="yes" starttime="20171010 14:33:49.253"></status>
+</test>
+<test id="s1-t2" name="Step2: Get client with positive balance">
+<kw name="Get client with positive balance">
+<kw name="Select From Db" library="test_func">
+<doc>Check: is client with positive balance in database.</doc>
+<arguments>
+<arg>${DB_NAME}</arg>
+<arg>${new_client_name}</arg>
+<arg>${new_client_balance}</arg>
+</arguments>
+<assign>
+<var>${client_id_client_balance}</var>
+</assign>
+<msg timestamp="20171010 14:33:49.258" level="INFO">${client_id_client_balance} = (3, 3.5)</msg>
+<status status="PASS" endtime="20171010 14:33:49.258" starttime="20171010 14:33:49.257"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${client_id_client_balance}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${client_id}</var>
+</assign>
+<msg timestamp="20171010 14:33:49.259" level="INFO">${client_id} = 3</msg>
+<status status="PASS" endtime="20171010 14:33:49.259" starttime="20171010 14:33:49.258"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${client_id_client_balance}</arg>
+<arg>1</arg>
+</arguments>
+<assign>
+<var>${client_balance}</var>
+</assign>
+<msg timestamp="20171010 14:33:49.259" level="INFO">${client_balance} = 3.5</msg>
+<status status="PASS" endtime="20171010 14:33:49.259" starttime="20171010 14:33:49.259"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${client_id}</arg>
+<arg>${client_id}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:49.259" level="INFO">${client_id} = 3</msg>
+<status status="PASS" endtime="20171010 14:33:49.260" starttime="20171010 14:33:49.259"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${client_balance}</arg>
+<arg>${client_balance}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:49.260" level="INFO">${client_balance} = 3.5</msg>
+<status status="PASS" endtime="20171010 14:33:49.260" starttime="20171010 14:33:49.260"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:49.260" starttime="20171010 14:33:49.257"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:49.261" critical="yes" starttime="20171010 14:33:49.257"></status>
+</test>
+<test id="s1-t3" name="Step3: Get client services list">
+<kw name="Get client services list">
+<kw name="Get Client Services" library="test_func">
+<doc>Get list of services by client_id</doc>
+<arguments>
+<arg>${Local_host_port}</arg>
+<arg>${client_id}</arg>
+</arguments>
+<assign>
+<var>${client_services}</var>
+</assign>
+<msg timestamp="20171010 14:33:50.284" level="INFO">Client with id=3 have list of the services [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}]</msg>
+<msg timestamp="20171010 14:33:50.285" level="INFO">${client_services} = [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}]</msg>
+<status status="PASS" endtime="20171010 14:33:50.285" starttime="20171010 14:33:49.264"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${client_services}</arg>
+<arg>${client_services}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:50.287" level="INFO">${client_services} = [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}]</msg>
+<status status="PASS" endtime="20171010 14:33:50.287" starttime="20171010 14:33:50.285"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:50.288" starttime="20171010 14:33:49.263"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:50.289" critical="yes" starttime="20171010 14:33:49.263"></status>
+</test>
+<test id="s1-t4" name="Step4: Get list of all available services">
+<kw name="Get list of all available services">
+<kw name="Get List Available Services" library="test_func">
+<doc>Get list of available services</doc>
+<arguments>
+<arg>${Local_host_port}</arg>
+</arguments>
+<assign>
+<var>${list_available_services}</var>
+</assign>
+<msg timestamp="20171010 14:33:51.311" level="INFO">List of available services is [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}, {u'cost': 0.35, u'id': 2, u'name': u'Service #2'}, {u'cost': 0.15, u'id': 3, u'name': u'Service #3'}, {u'cost': 0.15, u'id': 4, u'name': u'Service #4'}, {u'cost': 0.05, u'id': 5, u'name': u'Service #5'}]</msg>
+<msg timestamp="20171010 14:33:51.311" level="INFO">${list_available_services} = [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}, {u'cost': 0.35, u'id': 2, u'name': u'Service #2'}, {u'cost': 0.15, u'id': 3, u'name': u'Service #3'}, {u'cost': 0.15, u'id': 4, u'name': u'Service #4...</msg>
+<status status="PASS" endtime="20171010 14:33:51.311" starttime="20171010 14:33:50.295"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${list_available_services}</arg>
+<arg>${list_available_services}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:51.313" level="INFO">${list_available_services} = [{u'cost': 1.2, u'id': 1, u'name': u'Service #1'}, {u'cost': 0.35, u'id': 2, u'name': u'Service #2'}, {u'cost': 0.15, u'id': 3, u'name': u'Service #3'}, {u'cost': 0.15, u'id': 4, u'name': u'Service #4...</msg>
+<status status="PASS" endtime="20171010 14:33:51.314" starttime="20171010 14:33:51.312"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:51.314" starttime="20171010 14:33:50.294"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:51.316" critical="yes" starttime="20171010 14:33:50.293"></status>
+</test>
+<test id="s1-t5" name="Step5: Find a service that the client does not use">
+<kw name="Find a service that the client does not use">
+<kw name="Find Service For Client" library="test_func">
+<doc>Find a service that the client doesn't use</doc>
+<arguments>
+<arg>${client_services}</arg>
+<arg>${list_available_services}</arg>
+<arg>${client_id}</arg>
+</arguments>
+<assign>
+<var>${service_id_service_cost}</var>
+</assign>
+<msg timestamp="20171010 14:33:51.327" level="INFO">${service_id_service_cost} = [2, 0.35]</msg>
+<status status="PASS" endtime="20171010 14:33:51.328" starttime="20171010 14:33:51.326"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${service_id_service_cost}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${service_id}</var>
+</assign>
+<msg timestamp="20171010 14:33:51.329" level="INFO">${service_id} = 2</msg>
+<status status="PASS" endtime="20171010 14:33:51.330" starttime="20171010 14:33:51.328"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${service_id_service_cost}</arg>
+<arg>1</arg>
+</arguments>
+<assign>
+<var>${service_cost}</var>
+</assign>
+<msg timestamp="20171010 14:33:51.331" level="INFO">${service_cost} = 0.35</msg>
+<status status="PASS" endtime="20171010 14:33:51.332" starttime="20171010 14:33:51.330"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${service_id}</arg>
+<arg>${service_id}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:51.334" level="INFO">${service_id} = 2</msg>
+<status status="PASS" endtime="20171010 14:33:51.334" starttime="20171010 14:33:51.332"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${service_cost}</arg>
+<arg>${service_cost}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:51.336" level="INFO">${service_cost} = 0.35</msg>
+<status status="PASS" endtime="20171010 14:33:51.336" starttime="20171010 14:33:51.334"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:51.336" starttime="20171010 14:33:51.325"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:51.338" critical="yes" starttime="20171010 14:33:51.323"></status>
+</test>
+<test id="s1-t6" name="Step6: Add service to client">
+<kw name="Add service to client">
+<kw name="Add Service To Client Fun" library="test_func">
+<doc>Add the service to the client</doc>
+<arguments>
+<arg>${Local_host_port}</arg>
+<arg>${client_id}</arg>
+<arg>${service_id}</arg>
+</arguments>
+<msg timestamp="20171010 14:33:52.367" level="INFO">Start adding service 2 to client 3</msg>
+<status status="PASS" endtime="20171010 14:33:52.368" starttime="20171010 14:33:51.346"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:52.368" starttime="20171010 14:33:51.345"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:33:52.369" critical="yes" starttime="20171010 14:33:51.344"></status>
+</test>
+<test id="s1-t7" name="Step7: Check that service add to client">
+<kw name="Check that service add to client">
+<kw name="Is Service Add To Client" library="test_func">
+<doc>Check that new service add to client services list while 60 s</doc>
+<arguments>
+<arg>${Local_host_port}</arg>
+<arg>${client_id}</arg>
+<arg>${service_id}</arg>
+</arguments>
+<msg timestamp="20171010 14:34:16.564" level="INFO">Check: service 2 was added to client 3</msg>
+<status status="PASS" endtime="20171010 14:34:16.564" starttime="20171010 14:33:52.374"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:34:16.565" starttime="20171010 14:33:52.374"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:34:16.567" critical="yes" starttime="20171010 14:33:52.372"></status>
+</test>
+<test id="s1-t8" name="Step8: Get new balance of the client">
+<kw name="Get new balance of the client">
+<kw name="Get New Balance" library="test_func">
+<doc>Get new balance of the client</doc>
+<arguments>
+<arg>${DB_NAME}</arg>
+<arg>${client_id}</arg>
+</arguments>
+<assign>
+<var>${new_balance}</var>
+</assign>
+<msg timestamp="20171010 14:34:16.579" level="INFO">${new_balance} = 3.5</msg>
+<status status="PASS" endtime="20171010 14:34:16.579" starttime="20171010 14:34:16.576"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${new_balance}</arg>
+<arg>${new_balance}</arg>
+</arguments>
+<msg timestamp="20171010 14:34:16.581" level="INFO">${new_balance} = 3.5</msg>
+<status status="PASS" endtime="20171010 14:34:16.581" starttime="20171010 14:34:16.580"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:34:16.582" starttime="20171010 14:34:16.575"></status>
+</kw>
+<status status="PASS" endtime="20171010 14:34:16.583" critical="yes" starttime="20171010 14:34:16.573"></status>
+</test>
+<test id="s1-t9" name="Step9: Compare start and end value of client's balance">
+<kw name="Compare start and end value of client's balance">
+<kw name="Correctness Of Balace" library="test_func">
+<doc>Check correcness of balace value</doc>
+<arguments>
+<arg>${new_balance}</arg>
+<arg>${client_balance}</arg>
+<arg>${service_cost}</arg>
+</arguments>
+<msg timestamp="20171010 14:34:16.595" level="FAIL">TestException: We didn't subtract service cost from balance value</msg>
+<status status="FAIL" endtime="20171010 14:34:16.596" starttime="20171010 14:34:16.593"></status>
+</kw>
+<status status="FAIL" endtime="20171010 14:34:16.596" starttime="20171010 14:34:16.592"></status>
+</kw>
+<status status="FAIL" endtime="20171010 14:34:16.598" critical="yes" starttime="20171010 14:34:16.590">TestException: We didn't subtract service cost from balance value</status>
+</test>
+<status status="FAIL" endtime="20171010 14:34:16.603" starttime="20171010 14:33:49.150"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="8">Critical Tests</stat>
+<stat fail="1" pass="8">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="My Test" pass="8">My Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
